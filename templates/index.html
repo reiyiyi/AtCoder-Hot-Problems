@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtCoder Hot Problems</title>
+</head>
+<body>
+    <h1>AtCoder Hot Problems</h1>
+    <h2>{{ date }}における、問題ごとの提出されたコード数Top100(集計期間: {{ start_time }} ～ {{ end_time }})</h2>
+    <h2>提出されたコードの総数: {{ code_num }}</h2>
+    <table border="1">
+        <tr>
+            <th>順位</th>
+            <th>コンテスト名</th>
+            <th>問題名</th>
+            <th>コード数</th>
+        </tr>
+        {% for i in range(100) %}
+        <tr>
+            <td>{{ i+1 }}位</td>
+            <td><a href="https://atcoder.jp/contests/{{ problems[i][3] }}" target="_blank">{{ problems[i][0] }}</a></td>
+            <td><a href="https://atcoder.jp/contests/{{ problems[i][3] }}/tasks/{{ problems[i][4] }}" target="_blank">{{ problems[i][1] }}</a></td>
+            <td style="text-align: right;">{{ problems[i][2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>更新内容</h2>
+    <p>2021-03-07: 「AtCoder Hot Problems」公開</p>
+    <p>2021-03-07: 提出されたコードの総数も記載しました</p>
+    <p>2021-03-07: ランキングを表にしました</p>
+    <p>2021-03-10: 表にコンテスト名を追加しました</p>
+    <p>2021-03-10: コンテスト名、問題名をクリックすると、そのページへ飛べるようにしました</p>
+</body>
+</html>
