@@ -13,7 +13,7 @@ s3 = aws.get()
 
 bucket = s3.Bucket('hotproblems')
 
-current_time = int(time.time()) + 9 * 60 * 60
+current_time = int(time.time())
 research_time = current_time - 24 * 60 * 60
 
 time_dict = dict()
