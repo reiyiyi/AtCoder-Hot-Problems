@@ -1,6 +1,6 @@
 from flask import Flask, render_template
+import json
 import boto3
-import openpyxl
 import os
 import datetime
 import aws
@@ -10,31 +10,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    file_name = filename.get()
+    problems_file_name, time_file_name = filename.get()
 
     s3 = aws.get()
 
     bucket = s3.Bucket('hotproblems')
-    bucket.download_file('hot_problems_data/' + file_name, file_name)
+    bucket.download_file('hot_problems_data/' + problems_file_name, problems_file_name)
+    bucket.download_file('hot_problems_data/' + time_file_name, time_file_name)
 
-    wb = openpyxl.load_workbook(file_name)
-    sheet = wb.worksheets[0]
+    with open(problems_file_name, encoding='utf-8') as f:
+        hot_problems_data = json.load(f)
 
-    problems = [[sheet.cell(row = i+1, column = j+1).value for j in range(5)] for i in range(100)] #jsonにする
-
-    date = datetime.datetime.now() + datetime.timedelta(hours=9) - datetime.timedelta(days=1)
-    date = str(date.year) + "年" + str(date.month) + "月" + str(date.day) + "日"
-
-    start_time = datetime.datetime.fromtimestamp(int(sheet.cell(row = 1, column = 6).value))
-    end_time = datetime.datetime.fromtimestamp(int(sheet.cell(row = 2, column = 6).value))
-    code_num = sheet.cell(row = 3, column = 6).value
+    with open(time_file_name, encoding='utf-8') as f2:
+        time_data = json.load(f2)
 
     return render_template('index.html',
-                        problems=problems,
-                        date=date,
-                        start_time=start_time,
-                        end_time=end_time,
-                        code_num=code_num) #problemsを配列からjson(dict)にしたい
+                        hot_problems_data=hot_problems_data,
+                        time_data=time_data)
 
 if __name__ == "__main__":
    app.run(debug=True,host='0.0.0.0')
