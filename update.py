@@ -7,13 +7,15 @@ import os
 import aws
 import filename
 
+JST = datetime.timezone(timedelta(hours=+9), 'JST')
+
 problems_file_name, time_file_name = filename.get()
 
 s3 = aws.get()
 
 bucket = s3.Bucket('hotproblems')
 
-current_time = int(time.time())
+current_time = int(time.time(JST))
 research_time = current_time - 24 * 60 * 60
 
 time_dict = dict()
@@ -21,7 +23,7 @@ time_dict = dict()
 time_dict["start_time"] = str(datetime.datetime.fromtimestamp(research_time))
 time_dict["end_time"] = str(datetime.datetime.fromtimestamp(current_time))
 
-date = datetime.datetime.now() + datetime.timedelta(hours=9) - datetime.timedelta(days=1)
+date = datetime.datetime.now(JST)
 time_dict["date"] = str(date.year) + "年" + str(date.month) + "月" + str(date.day) + "日"
 
 submissions_url = "https://kenkoooo.com/atcoder/atcoder-api/v3/from/"
@@ -65,13 +67,13 @@ for _ in range(500):
     for data in submissions_json_data:
         if data["epoch_second"] >= current_time:
             print(data)
-            print(datetime.datetime.fromtimestamp(int(data["epoch_second"])))
+            print(datetime.datetime.fromtimestamp(int(data["epoch_second"]), JST))
             research_time = current_time
             break
 
         if number_of_submissions == 0:
             print(data)
-            print(datetime.datetime.fromtimestamp(int(data["epoch_second"])))
+            print(datetime.datetime.fromtimestamp(int(data["epoch_second"]), JST))
 
         problems_count[problems_index[data["problem_id"]]]["count"] += 1
         number_of_submissions += 1

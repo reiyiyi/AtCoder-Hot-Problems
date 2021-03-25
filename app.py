@@ -2,7 +2,6 @@ from flask import Flask, render_template
 import json
 import boto3
 import os
-import datetime
 import aws
 import filename
 
