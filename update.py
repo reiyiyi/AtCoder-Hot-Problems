@@ -20,8 +20,8 @@ research_time = current_time - 24 * 60 * 60
 
 time_dict = dict()
 
-time_dict["start_time"] = str(datetime.datetime.fromtimestamp(research_time))
-time_dict["end_time"] = str(datetime.datetime.fromtimestamp(current_time))
+time_dict["start_time"] = str(datetime.datetime.fromtimestamp(research_time, JST))
+time_dict["end_time"] = str(datetime.datetime.fromtimestamp(current_time, JST))
 
 date = datetime.datetime.now(JST)
 time_dict["date"] = str(date.year) + "年" + str(date.month) + "月" + str(date.day) + "日"
