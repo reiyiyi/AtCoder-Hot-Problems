@@ -15,4 +15,4 @@ def get():
 
 if __name__ == "__main__":
     s3 = get()
-    print("success")
+    print("success!")
