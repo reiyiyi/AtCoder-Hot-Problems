@@ -7,7 +7,7 @@ import os
 import aws
 import filename
 
-JST = datetime.timezone(timedelta(hours=+9), 'JST')
+JST = datetime.timezone(datetime.timedelta(hours=+9), 'JST')
 
 problems_file_name, time_file_name = filename.get()
 
