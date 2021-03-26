@@ -29,3 +29,17 @@ body {
     max-width: 800px;
     padding: 10px;
 }
+
+table {
+    margin: auto;
+}
+
+th, td {
+    padding: 6px;
+}
+
+.sentence {
+    line-height: 1em;
+    padding-top: 2px;
+    text-align: center;
+}
