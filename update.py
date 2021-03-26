@@ -23,7 +23,7 @@ time_dict = dict()
 time_dict["start_time"] = str(datetime.datetime.fromtimestamp(research_time, JST))
 time_dict["end_time"] = str(datetime.datetime.fromtimestamp(current_time, JST))
 
-date = datetime.datetime.now(JST)
+date = datetime.datetime.now(JST) - datetime.timedelta(days=1)
 time_dict["date"] = str(date.year) + "年" + str(date.month) + "月" + str(date.day) + "日"
 
 submissions_url = "https://kenkoooo.com/atcoder/atcoder-api/v3/from/"
