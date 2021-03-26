@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+html {
+    font-size: 100%;
+}
+
+body { 
+    margin: 0px;
+    -webkit-text-size-adjust: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    background-color: rgb(241, 89, 34);
+}
+
+.header {
+    max-width: 800px;
+    padding: 1px;
+}
+
+.appname {
+    padding-left: 2%;
+    color: white;
+}
+
+.footer{
+    margin: auto;
+    max-width: 800px;
+    padding: 10px;
+}

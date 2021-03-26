@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="AtCoder Hot Problemsは前日に提出されたコードを全て集計し、どの問題が多く取り組まれたかをランキングにして表示するWebアプリケーションです。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'style.css') }}">
     <title>AtCoder Hot Problems</title>
 </head>
 <body>
-    <h1>AtCoder Hot Problems</h1>
+    <header class="site-header wrapper">
+        <div class="header">
+            <h1 class="appname">AtCoder Hot Problems</h1>
+        </div>
+    </header>
+    
     <h2>{{ time_data['date'] }}における、問題ごとの提出されたコード数Top100(集計期間: {{ time_data['start_time'] }} ～ {{ time_data['end_time'] }})</h2>
     <h2>提出されたコードの総数: {{ time_data['number_of_submissions'] }}</h2>
     <table border="1">
@@ -33,5 +39,11 @@
     <p>2021-03-07: ランキングを表にしました</p>
     <p>2021-03-10: 表にコンテスト名を追加しました</p>
     <p>2021-03-10: コンテスト名、問題名をクリックすると、そのページへ飛べるようにしました</p>
+    <p>2021-03-26: ヘッダーを付けてみました</p>
+
+    <footer class="site-footer wrapper">
+        <div class="footer">
+        </div>
+    </footer>
 </body>
 </html>
