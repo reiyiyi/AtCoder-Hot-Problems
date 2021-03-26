@@ -39,7 +39,7 @@ th, td {
 }
 
 .sentence {
-    line-height: 1em;
     padding-top: 2px;
+    line-height: 1em;
     text-align: center;
 }
