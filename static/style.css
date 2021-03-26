@@ -24,12 +24,6 @@ body {
     color: white;
 }
 
-.footer{
-    margin: auto;
-    max-width: 800px;
-    padding: 10px;
-}
-
 table {
     margin: auto;
 }
@@ -42,4 +36,10 @@ th, td {
     padding-top: 2px;
     line-height: 1em;
     text-align: center;
+}
+
+.footer{
+    margin: auto;
+    max-width: 800px;
+    padding: 10px;
 }
