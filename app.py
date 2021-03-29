@@ -6,9 +6,12 @@ import aws
 import filename
 
 app = Flask(__name__)
-
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/ranking', methods=["GET"])
+def ranking():
     problems_file_name, time_file_name = filename.get()
 
     s3 = aws.get()

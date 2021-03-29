@@ -14,36 +14,7 @@
             <h1 class="appname">AtCoder Hot Problems</h1>
         </div>
     </header>
-    
-    <h2 class=sentence>(集計期間: {{ time_data['start_time'] }} ～ {{ time_data['end_time'] }})</h2>
-    <h2 class=sentence>集計期間内に提出されたコードの総数: {{ time_data['number_of_submissions'] }}</h2>
-    <br>
-    <h2 class=sentence>{{ time_data['date'] }}における、問題ごとの提出されたコード数Top100</h2>
-    <table border="1">
-        <tr>
-            <th>順位</th>
-            <th>コンテスト名</th>
-            <th>問題名</th>
-            <th>コード数</th>
-        </tr>
-        {% for i in range(100) %}
-        <tr>
-            <td>{{ i+1 }}位</td>
-            <td><a href="https://atcoder.jp/contests/{{ hot_problems_data[i]['contests_id'] }}" target="_blank">{{ hot_problems_data[i]['contests_name'] }}</a></td>
-            <td><a href="https://atcoder.jp/contests/{{ hot_problems_data[i]['contests_id'] }}/tasks/{{ hot_problems_data[i]['problems_id'] }}" target="_blank">{{ hot_problems_data[i]['problems_name'] }}</a></td>
-            <td style="text-align: right;">{{ hot_problems_data[i]['count'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h2>更新内容</h2>
-    <p>2021-03-07: 「AtCoder Hot Problems」公開</p>
-    <p>2021-03-07: 提出されたコードの総数も記載しました</p>
-    <p>2021-03-07: ランキングを表にしました</p>
-    <p>2021-03-10: 表にコンテスト名を追加しました</p>
-    <p>2021-03-10: コンテスト名、問題名をクリックすると、そのページへ飛べるようにしました</p>
-    <p>2021-03-26: ヘッダーを付けてみました</p>
-    <p>2021-03-26: 表を見やすくしました</p>
-
+    <a href="{{url_for('ranking')}}">ranking</a>
     <footer class="site-footer wrapper">
         <div class="footer">
         </div>
