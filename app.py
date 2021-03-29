@@ -17,16 +17,16 @@ def ranking():
     s3 = aws.get()
 
     bucket = s3.Bucket('hotproblems')
-    bucket.download_file('hot_problems_data/' + problems_file_name, problems_file_name)
+    bucket.download_file('hot_problems_data/' + problems_file_name + '.json', problems_file_name + '.json')
     bucket.download_file('hot_problems_data/' + time_file_name, time_file_name)
 
-    with open(problems_file_name, encoding='utf-8') as f:
+    with open(problems_file_name + '.json', encoding='utf-8') as f:
         hot_problems_data = json.load(f)
 
     with open(time_file_name, encoding='utf-8') as f2:
         time_data = json.load(f2)
 
-    return render_template('index.html',
+    return render_template('ranking.html',
                         hot_problems_data=hot_problems_data,
                         time_data=time_data)
 

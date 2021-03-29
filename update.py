@@ -93,12 +93,12 @@ time_dict["number_of_submissions"] = number_of_submissions
 problems_count = sorted(problems_count, key=lambda x: x["count"], reverse=True)
 problems_count = problems_count[:100]
 
-with open(problems_file_name, 'w', encoding='utf-8') as f:
+with open(problems_file_name + '.json', 'w', encoding='utf-8') as f:
     json.dump(problems_count, f, ensure_ascii=False)
 
 with open(time_file_name, 'w', encoding='utf-8') as f:
     json.dump(time_dict, f, ensure_ascii=False)
 
-bucket.upload_file(problems_file_name, 'hot_problems_data/' + problems_file_name)
+bucket.upload_file(problems_file_name + '.json', 'hot_problems_data/' + problems_file_name + '.json')
 
 bucket.upload_file(time_file_name, 'hot_problems_data/' + time_file_name)
