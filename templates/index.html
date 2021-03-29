@@ -14,7 +14,18 @@
             <h1 class="appname">AtCoder Hot Problems</h1>
         </div>
     </header>
-    <a href="{{url_for('ranking')}}">ranking</a>
+    <div>
+        <a href="{{url_for('ranking')}}">全体</a>
+    </div>
+    <p>AC数別ランキング</p>
+    <div>
+        <a href="{{url_for('ranking_0')}}">0~199</a>
+        <a href="{{url_for('ranking_ac200')}}">200~399</a>
+        <a href="{{url_for('ranking_ac400')}}">400~599</a>
+        <a href="{{url_for('ranking_ac600')}}">600~799</a>
+        <a href="{{url_for('ranking_ac800')}}">800~999</a>
+        <a href="{{url_for('ranking_ac1000')}}">1000~</a>
+    </div>
     <footer class="site-footer wrapper">
         <div class="footer">
         </div>
