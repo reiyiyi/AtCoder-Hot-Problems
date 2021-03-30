@@ -14,19 +14,29 @@
             <h1 class="appname">AtCoder Hot Problems</h1>
         </div>
     </header>
-    <div>
-        <a href="{{url_for('ranking')}}">全体</a>
+    <h2 class=sentence>(集計期間: {{ time_data['start_time'] }} ～ {{ time_data['end_time'] }})</h2>
+    <h2 class=sentence>集計期間内に提出されたコードの総数: {{ time_data['number_of_submissions'] }}</h2>
+    <hr>
+    <h2 class=sentence>全体でのランキング</h2>
+    <div class="inline">
+        <a href="{{url_for('ranking')}}" class="button">全体</a>
     </div>
-    <p>AC数別ランキング↓</p>
-    <div>
-        <a href="{{url_for('ranking_ac0')}}">0~199</a>
-        <a href="{{url_for('ranking_ac200')}}">200~399</a>
-        <a href="{{url_for('ranking_ac400')}}">400~599</a>
-        <a href="{{url_for('ranking_ac600')}}">600~799</a>
-        <a href="{{url_for('ranking_ac800')}}">800~999</a>
-        <a href="{{url_for('ranking_ac1000')}}">1000~</a>
+    <h2 class=sentence>AC数別でのランキング</h2>
+    <div class="inline">
+        <a href="{{url_for('ranking_ac0')}}" class="button">0~199</a>
+        <a href="{{url_for('ranking_ac200')}}" class="button">200~399</a>
+        <a href="{{url_for('ranking_ac400')}}" class="button">400~599</a>
+        <a href="{{url_for('ranking_ac600')}}" class="button">600~799</a>
+        <a href="{{url_for('ranking_ac800')}}" class="button">800~999</a>
+        <a href="{{url_for('ranking_ac1000')}}" class="button">1000~</a>
     </div>
-    <footer class="site-footer wrapper">
+    <hr>
+    <div class="sentence2">
+        <h2>AC数別でのランキング とは</h2>
+        <p>例えば上記の0~199と書かれたボタンをクリックすると、AC数が0以上199以下の方々が集計期間内に提出したコードのみを集計したランキングを閲覧することができます。</p>
+        <p>そのため、「最近AtCoderを始めたけど、どういった問題を選んで取り組めばよいのかわからない」という悩みを少しでも抱えている方はこのランキングから、自分と同じくらいのAC数の人たちが取り組んでいる問題を見て、どの問題を選んで解くかを決める1つの参考材料にして欲しいと願っています。</p>
+    </div>
+        <footer class="site-footer wrapper">
         <div class="footer">
         </div>
     </footer>

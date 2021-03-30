@@ -8,7 +8,18 @@ import filename
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ignore, time_file_name = filename.get()
+
+    s3 = aws.get()
+
+    bucket = s3.Bucket('hotproblems')
+    bucket.download_file('hot_problems_data/' + time_file_name, time_file_name)
+
+    with open(time_file_name, encoding='utf-8') as f:
+        time_data = json.load(f)
+
+    return render_template('index.html',
+                        time_data=time_data)
 
 @app.route('/ranking', methods=["GET"])
 def ranking():

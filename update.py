@@ -45,6 +45,7 @@ contests_json_data = contests_response.json()
 problems_json_data = problems_response.json()
 ac_json_data = ac_response.json()
 
+total_problems_count = []
 problems_count = [[] for _ in range(6)]
 contests_name = dict()
 problems_index = dict()
@@ -63,6 +64,9 @@ for data in problems_json_data:
                 "problems_name":data["title"], 
                 "contests_id":data["contest_id"], 
                 "problems_id":data["id"]}
+
+    total_problems_count.append(data_dict.copy())
+
     for i in range(6):
         problems_count[i].append(data_dict.copy())
 
@@ -85,6 +89,8 @@ for _ in range(500):
             print(data)
             print(datetime.datetime.fromtimestamp(int(data["epoch_second"]), JST))
 
+        total_problems_count[problems_index[data["problem_id"]]]["count"] += 1
+
         if data["user_id"] in user_ac_data:
             idx = user_ac_data[data["user_id"]] // 200
             if idx > 5:
@@ -106,6 +112,14 @@ for _ in range(500):
 
 time_dict["number_of_submissions"] = number_of_submissions
 
+total_problems_count = sorted(total_problems_count, key=lambda x: x["count"], reverse=True)
+total_problems_count = total_problems_count[:100]
+
+with open(problems_file_name + ".json", 'w', encoding='utf-8') as f:
+    json.dump(total_problems_count, f, ensure_ascii=False, indent=4)
+
+bucket.upload_file(problems_file_name + '.json', 'hot_problems_data/' + problems_file_name + '.json')
+
 for i in range(6):
     problems_count[i] = sorted(problems_count[i], key=lambda x: x["count"], reverse=True)
     problems_count[i] = problems_count[i][:100]
@@ -115,7 +129,7 @@ for i in range(6):
 
     bucket.upload_file(problems_file_name + str(200 * i) + '.json', 'hot_problems_data/' + problems_file_name + str(200 * i) + '.json')
 
-with open(time_file_name, 'w', encoding='utf-8') as f:
-    json.dump(time_dict, f, ensure_ascii=False)
+with open(time_file_name, 'w', encoding='utf-8') as f2:
+    json.dump(time_dict, f2, ensure_ascii=False)
 
 bucket.upload_file(time_file_name, 'hot_problems_data/' + time_file_name)
